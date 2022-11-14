@@ -25,7 +25,7 @@ lxml==4.9.1
 matplotlib==3.5.3
 MarkupSafe>=2.0
 multidict==6.0.2
-numpy==1.23.4
+numpy==1.21.6
 oauthlib==3.2.2
 opencv-python--headless==4.6.0.66
 pandas==1.5.1
