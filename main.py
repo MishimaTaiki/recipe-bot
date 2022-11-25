@@ -72,6 +72,7 @@ def handle_image(event):
     recipeClass = Recipe()
     replyUrl = recipeClass.get_recipe(rankName[0])
 
+    url=[replyUrl[0], replyUrl[1], replyUrl[2], replyUrl[3]]
     line_bot_api.reply_message(
     event.reply_token,
     columns=[
@@ -81,7 +82,7 @@ def handle_image(event):
             text=column['text'],
             actions=[URITemplateAction(label=column['actions']['label'],uri=column['actions']['uri'])]
         )
-        url = ['replyUrl[0]', 'replyUrl[1]', 'replyUrl[2]', 'replyUrl[3]']
+    #url=[replyUrl[0], replyUrl[1], replyUrl[2], replyUrl[3]]
         for column in url
     ]
     TemplateSendMessage(alt_text='template',template=CarouselTemplate(columns=columns))
