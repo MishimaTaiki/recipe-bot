@@ -80,12 +80,12 @@ def handle_image(event):
             thumbnail_image_url=column['thumbnail_image_url'],
             title=column['title'],
             text=column['text'],
-            actions=[URITemplateAction(label=column['actions']['label'],uri=column['actions']['uri'])]
+            actions=[URITemplateAction(label=column['actions']['label'],uri=column['actions']['uri']),]
         )
     #url=[replyUrl[0], replyUrl[1], replyUrl[2], replyUrl[3]]
         for column in url
     ]
-    TemplateSendMessage(alt_text='template',template=CarouselTemplate(columns=columns))
+    TemplateSendMessage(alt_text='template',template=CarouselTemplate(columns=columns),)
     #[TextSendMessage(text=replyUrl[0]), TextSendMessage(text=replyUrl[1]), TextSendMessage(text=replyUrl[2]), TextSendMessage(text=replyUrl[3])]
     )
 
