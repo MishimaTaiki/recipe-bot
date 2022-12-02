@@ -64,7 +64,7 @@ class Recipe:
                 recipesImg.append(recipe['foodImageUrl'])
                 recipesTitle.append(recipe['recipeTitle'])
         return recipesUrl, recipesImg, recipesTitle
-    
+    '''
     def create_db(self, conn, cur):
         print("テーブルは存在しません")
         # テーブルを作成
@@ -98,7 +98,7 @@ class Recipe:
         # 4.データベースに情報をコミット
         conn.commit()
         time.sleep(3)
-
+'''
 #recipe = Recipe()
 #recipeUrl, imgUrl = recipe.get_recipe("さつまいも")
 #print(recipeUrl)
