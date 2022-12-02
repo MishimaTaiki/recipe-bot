@@ -65,7 +65,7 @@ def handle_image(event):
     with open('static/' + event.message.id + '.jpg', 'wb') as f:
         f.write(message_content.content)
 
-    contentUrl='https://recipe-bot.onrender.com/' + 'static/' + event.message.id + '.jpg'
+    contentUrl='https://recipe-bot-media.herokuapp.com/' + 'static/' + event.message.id + '.jpg'
     #try:
     detectClass = Detect()
     rankName = detectClass.detect_img(image=contentUrl)

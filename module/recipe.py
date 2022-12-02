@@ -43,6 +43,7 @@ class Recipe:
         # 3. 人気レシピを取得する
         #df_recipe = pd.DataFrame(columns=['recipeId', 'recipeTitle', 'recipeUrl', 'foodImageUrl', 'recipeMaterial', 'recipeCost', 'recipeIndication', 'categoryId', 'categoryName'])
         recipesUrl = []
+        imgUrl = []
         i = 0
         for index, row in df_keyword.iterrows():
             if i > 0: 
@@ -59,4 +60,10 @@ class Recipe:
             for recipe in recipes:
                 #df_recipe = df_recipe.append({'recipeId':recipe['recipeId'],'recipeTitle':recipe['recipeTitle'],'recipeUrl':recipe['recipeUrl'],'foodImageUrl':recipe['foodImageUrl'],'recipeMaterial':recipe['recipeMaterial'],'recipeCost':recipe['recipeCost'],'recipeIndication':recipe['recipeIndication'],'categoryId':row['categoryId'],'categoryName':row['categoryName']}, ignore_index=True)
                 recipesUrl.append(recipe['recipeUrl'])
-        return recipesUrl
+                imgUrl.append(recipe['foodImageUrl'])
+        return recipesUrl, imgUrl
+    
+#recipe = Recipe()
+#recipeUrl, imgUrl = recipe.get_recipe("さつまいも")
+#print(recipeUrl)
+#print(imgUrl)
