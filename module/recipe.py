@@ -61,7 +61,8 @@ class Recipe:
             for recipe in recipes:
                 #df_recipe = df_recipe.append({'recipeId':recipe['recipeId'],'recipeTitle':recipe['recipeTitle'],'recipeUrl':recipe['recipeUrl'],'foodImageUrl':recipe['foodImageUrl'],'recipeMaterial':recipe['recipeMaterial'],'recipeCost':recipe['recipeCost'],'recipeIndication':recipe['recipeIndication'],'categoryId':row['categoryId'],'categoryName':row['categoryName']}, ignore_index=True)
                 recipesUrl.append(recipe['recipeUrl'])
-                imgUrl.append(recipe['foodImageUrl'])
+                recipesImg.append(recipe['foodImageUrl'])
+                recipesTitle.append(recipe['recipeTitle'])
         return recipesUrl, recipesImg, recipesTitle
     
     def create_db(self, conn, cur):
