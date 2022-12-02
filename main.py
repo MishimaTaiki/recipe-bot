@@ -48,7 +48,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     recipeClass = Recipe()
-    replyUrl = recipeClass.get_recipe(event.message.text)
+    replyUrl, replyImg = recipeClass.get_recipe(event.message.text)
     line_bot_api.reply_message(
         event.reply_token,
         [TextSendMessage(text=replyUrl[0]), TextSendMessage(text=replyUrl[1]), TextSendMessage(text=replyUrl[2]), TextSendMessage(text=replyUrl[3])])
@@ -70,26 +70,26 @@ def handle_image(event):
     detectClass = Detect()
     rankName = detectClass.detect_img(image=contentUrl)
     recipeClass = Recipe()
-    replyUrl = recipeClass.get_recipe(rankName[0])
+    replyUrl, replyImg = recipeClass.get_recipe(rankName[0])
 
-    url=[replyUrl[0], replyUrl[1], replyUrl[2], replyUrl[3]]
-    #line_bot_api.reply_message(
-    #event.reply_token,
-    columns=[
-        CarouselColumn(
-            thumbnail_image_url=column['thumbnail_image_url'],
-            title=column['title'],
-            text=column['text'],
-            actions=[URITemplateAction(label=column['actions']['label'],uri=column['actions']['uri']),]
-        )
     #url=[replyUrl[0], replyUrl[1], replyUrl[2], replyUrl[3]]
-        for column in url
-    ]
-    messages=TemplateSendMessage(alt_text='template',template=CarouselTemplate(columns=columns),)
     line_bot_api.reply_message(
     event.reply_token,
-    messages=messages,
-    #[TextSendMessage(text=replyUrl[0]), TextSendMessage(text=replyUrl[1]), TextSendMessage(text=replyUrl[2]), TextSendMessage(text=replyUrl[3])]
+    #columns=[
+     #   CarouselColumn(
+      #      thumbnail_image_url=column['thumbnail_image_url'],
+       #     title=column['title'],
+        #    text=column['text'],
+         #   actions=[URITemplateAction(label=column['actions']['label'],uri=column['actions']['uri']),]
+        #)
+    #url=[replyUrl[0], replyUrl[1], replyUrl[2], replyUrl[3]]
+        #for column in url
+    #]
+    #messages=TemplateSendMessage(alt_text='template',template=CarouselTemplate(columns=columns),)
+    line_bot_api.reply_message(
+    event.reply_token,
+    #messages=messages,
+    [TextSendMessage(text=replyUrl[0]), TextSendMessage(text=replyUrl[1]), TextSendMessage(text=replyUrl[2]), TextSendMessage(text=replyUrl[3])]
     )
 
     #except Exception as e:
