@@ -27,6 +27,130 @@ YOUR_CHANNEL_SECRET = "7bbd4021f2da55f08e5242df6ee70734"
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
+def handle_column(replyUrl,replyImg,replyTitle):
+    column = {
+  "type": "template",
+  "altText": "this is a carousel template",
+  "template": {
+    "type": "carousel",
+    "columns": [
+      {
+        "thumbnailImageUrl": replyImg[0],
+        "imageBackgroundColor": "#FFFFFF",
+        "title": replyTitle[0],
+        "text": replyTitle[0],
+        "defaultAction": {
+          "type": "uri",
+          "label": "View detail",
+          "uri": replyUrl[0]
+        },
+        "actions": [
+          {
+            "type": "postback",
+            "label": "Buy",
+            "data": "action=buy&itemid=111"
+          },
+          {
+            "type": "postback",
+            "label": "Add to cart",
+            "data": "action=add&itemid=111"
+          },
+          {
+            "type": "uri",
+            "label": "View detail",
+            "uri": replyUrl[0]
+          }
+        ]
+      },
+      {
+        "thumbnailImageUrl": replyImg[1],
+        "imageBackgroundColor": "#000000",
+        "title": replyTitle[1],
+        "text": replyTitle[1],
+        "defaultAction": {
+          "type": "uri",
+          "label": "View detail",
+          "uri": replyUrl[1]
+        },
+        "actions": [
+          {
+            "type": "postback",
+            "label": "Buy",
+            "data": "action=buy&itemid=222"
+          },
+          {
+            "type": "postback",
+            "label": "Add to cart",
+            "data": "action=add&itemid=222"
+          },
+          {
+            "type": "uri",
+            "label": "View detail",
+            "uri": replyUrl[1]
+          }
+        ]
+      },
+      {
+        "thumbnailImageUrl": replyImg[2],
+        "imageBackgroundColor": "#FFFFFF",
+        "title": replyTitle[2],
+        "text": replyTitle[2],
+        "defaultAction": {
+          "type": "uri",
+          "label": "View detail",
+          "uri": replyUrl[2]
+        },
+        "actions": [
+          {
+            "type": "postback",
+            "label": "Buy",
+            "data": "action=buy&itemid=111"
+          },
+          {
+            "type": "postback",
+            "label": "Add to cart",
+            "data": "action=add&itemid=111"
+          },
+          {
+            "type": "uri",
+            "label": "View detail",
+            "uri": replyUrl[2]
+          }
+        ]
+      },
+      {
+        "thumbnailImageUrl": replyImg[3],
+        "imageBackgroundColor": "#000000",
+        "title": replyTitle[3],
+        "text": replyTitle[3],
+        "defaultAction": {
+          "type": "uri",
+          "label": "View detail",
+          "uri": replyUrl[3]
+        },
+        "actions": [
+          {
+            "type": "postback",
+            "label": "Buy",
+            "data": "action=buy&itemid=222"
+          },
+          {
+            "type": "postback",
+            "label": "Add to cart",
+            "data": "action=add&itemid=222"
+          },
+          {
+            "type": "uri",
+            "label": "View detail",
+            "uri": replyUrl[3]
+          }
+        ]
+      }
+    ],
+    "imageAspectRatio": "rectangle",
+    "imageSize": "cover"
+  }
+}
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -49,15 +173,16 @@ def callback():
 def handle_message(event):
     recipeClass = Recipe()
     replyUrl, replyImg, replyTitle = recipeClass.get_recipe(event.message.text)
+    column = handle_column(replyUrl,replyImg,replyTitle)
     columns = [
                 CarouselColumn(
-                    thumbnail_image_url=replyImg,
-                    title=replyTitle,
-                    text=replyTitle,
+                    thumbnail_image_url=column['thumbnail_image_url'],
+                    title=column['title'],
+                    text=column['text'],
                     actions=[
                         URITemplateAction(
-                            label="メニューを見る",
-                            uri=replyUrl,
+                            label=column['actions']['label'],
+                            uri=column['actions']['uri'],
                         )
                     ]
                 )
