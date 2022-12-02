@@ -35,7 +35,7 @@ def handle_column(replyUrl,replyImg,replyTitle):
       "type": "carousel",
       "columns": [
         {
-          "thumbnailImageUrl": "replyImg[0]",
+          "thumbnailImageUrl": replyImg[0],
           "imageBackgroundColor": "#FFFFFF",
           "title": replyTitle[0],
           "text": replyTitle[0],
@@ -63,7 +63,7 @@ def handle_column(replyUrl,replyImg,replyTitle):
           ]
         },
         {
-          "thumbnailImageUrl": "replyImg[1]",
+          "thumbnailImageUrl": replyImg[1],
           "imageBackgroundColor": "#000000",
           "title": replyTitle[1],
           "text": replyTitle[1],
@@ -91,7 +91,7 @@ def handle_column(replyUrl,replyImg,replyTitle):
           ]
         },
         {
-          "thumbnailImageUrl": "replyImg[2]",
+          "thumbnailImageUrl": replyImg[2],
           "imageBackgroundColor": "#FFFFFF",
           "title": replyTitle[2],
           "text": replyTitle[2],
@@ -119,7 +119,7 @@ def handle_column(replyUrl,replyImg,replyTitle):
           ]
         },
         {
-          "thumbnailImageUrl": "replyImg[3]",
+          "thumbnailImageUrl": replyImg[3],
           "imageBackgroundColor": "#000000",
           "title": replyTitle[3],
           "text": replyTitle[3],
