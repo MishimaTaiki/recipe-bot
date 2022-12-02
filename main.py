@@ -73,8 +73,8 @@ def handle_image(event):
     replyUrl, replyImg = recipeClass.get_recipe(rankName[0])
 
     #url=[replyUrl[0], replyUrl[1], replyUrl[2], replyUrl[3]]
-    line_bot_api.reply_message(
-    event.reply_token,
+    #line_bot_api.reply_message(
+    #event.reply_token,
     #columns=[
      #   CarouselColumn(
       #      thumbnail_image_url=column['thumbnail_image_url'],
