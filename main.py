@@ -28,7 +28,7 @@ line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 def handle_column(replyUrl,replyImg,replyTitle):
-    column = {
+  column = {
   "type": "template",
   "altText": "this is a carousel template",
   "template": {
@@ -149,8 +149,9 @@ def handle_column(replyUrl,replyImg,replyTitle):
     ],
     "imageAspectRatio": "rectangle",
     "imageSize": "cover"
+    }
   }
-}
+  return column 
 
 @app.route("/callback", methods=['POST'])
 def callback():
