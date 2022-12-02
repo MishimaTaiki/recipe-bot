@@ -176,7 +176,7 @@ def handle_message(event):
     column = handle_column(replyUrl,replyImg,replyTitle)
     columns = [
                 CarouselColumn(
-                    thumbnail_image_url=column['thumbnail_image_url'],
+                    thumbnail_image_url=column['thumbnailImageUrl'],
                     title=column['title'],
                     text=column['text'],
                     actions=[
