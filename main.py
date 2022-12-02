@@ -177,13 +177,13 @@ def handle_message(event):
     column = handle_column(replyUrl,replyImg,replyTitle)
     columns = [
                 CarouselColumn(
-                    thumbnail_image_url=column["thumbnailImageUrl"],
-                    title=column["title"],
-                    text=column["text"],
+                    thumbnail_image_url=column['thumbnailImageUrl'],
+                    title=column['title'],
+                    text=column['text'],
                     actions=[
                         URITemplateAction(
-                            label=column["actions"]["label"],
-                            uri=column["actions"]["uri"],
+                            label=column['actions']['label'],
+                            uri=column['actions']['uri'],
                         )
                     ]
                 )
