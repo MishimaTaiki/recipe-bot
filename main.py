@@ -175,6 +175,7 @@ def handle_message(event):
     recipeClass = Recipe()
     replyUrl, replyImg, replyTitle = recipeClass.get_recipe(event.message.text)
     column = handle_column(replyUrl,replyImg,replyTitle)
+    '''
     columns = [
                 CarouselColumn(
                     thumbnail_image_url=column['columns']['thumbnailImageUrl'],
@@ -193,10 +194,13 @@ def handle_message(event):
                 alt_text='template',
                 template=CarouselTemplate(columns=columns),
             )
+            '''
     line_bot_api.reply_message(
         event.reply_token,
         #[TextSendMessage(text=replyUrl[0]), TextSendMessage(text=replyUrl[1]), TextSendMessage(text=replyUrl[2]), TextSendMessage(text=replyUrl[3])])
-        messages)
+        #messages)
+        TemplateSendMessage(alt_text='template', template=CarouselTemplate(columns=column))
+    )
 
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_image(event):
