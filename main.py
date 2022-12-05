@@ -176,7 +176,7 @@ def handle_message(event):
     replyUrl, replyImg, replyTitle = recipeClass.get_recipe(event.message.text)
     #column = handle_column(replyUrl,replyImg,replyTitle)
     columns = [
-                {
+                #{
                   CarouselColumn(
                     thumbnail_image_url=replyImg[0],
                     title=replyTitle[0],
@@ -188,8 +188,8 @@ def handle_message(event):
                         )
                     ]
                   )
-                },
-                {
+                ,#},
+                #{
                   CarouselColumn(
                     thumbnail_image_url=replyImg[1],
                     title=replyTitle[1],
@@ -201,8 +201,8 @@ def handle_message(event):
                         )
                     ]
                   )
-                },
-                {
+                ,#},
+                #{
                   CarouselColumn(
                     thumbnail_image_url=replyImg[2],
                     title=replyTitle[2],
@@ -214,8 +214,8 @@ def handle_message(event):
                         )
                     ]
                   )
-                },
-                {
+                ,#},
+                #{
                   CarouselColumn(
                     thumbnail_image_url=replyImg[3],
                     title=replyTitle[3],
@@ -227,7 +227,7 @@ def handle_message(event):
                         )
                     ]
                   )
-                }
+                #}
                 #for column in result
             ]
     '''
