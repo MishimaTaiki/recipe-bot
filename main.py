@@ -174,22 +174,63 @@ def callback():
 def handle_message(event):
     recipeClass = Recipe()
     replyUrl, replyImg, replyTitle = recipeClass.get_recipe(event.message.text)
-    column = handle_column(replyUrl,replyImg,replyTitle)
-    '''
+    #column = handle_column(replyUrl,replyImg,replyTitle)
     columns = [
-                CarouselColumn(
-                    thumbnail_image_url=column['columns']['thumbnailImageUrl'],
-                    title=column['columns']['title'],
-                    text=column['columns']['text'],
+                {
+                  CarouselColumn(
+                    thumbnail_image_url=replyImg[0],
+                    title=replyTitle[0],
+                    text=replyTitle[0],
                     actions=[
                         URITemplateAction(
-                            label=column['columns']['actions']['label'],
-                            uri=column['columns']['actions']['uri'],
+                            label="view detail",
+                            uri=replyUrl[0],
                         )
                     ]
-                )
+                  )
+                },
+                {
+                  CarouselColumn(
+                    thumbnail_image_url=replyImg[1],
+                    title=replyTitle[1],
+                    text=replyTitle[1],
+                    actions=[
+                        URITemplateAction(
+                            label="view detail",
+                            uri=replyUrl[1],
+                        )
+                    ]
+                  )
+                },
+                {
+                  CarouselColumn(
+                    thumbnail_image_url=replyImg[2],
+                    title=replyTitle[2],
+                    text=replyTitle[2],
+                    actions=[
+                        URITemplateAction(
+                            label="view detail",
+                            uri=replyUrl[2],
+                        )
+                    ]
+                  )
+                },
+                {
+                  CarouselColumn(
+                    thumbnail_image_url=replyImg[3],
+                    title=replyTitle[3],
+                    text=replyTitle[3],
+                    actions=[
+                        URITemplateAction(
+                            label="view detail",
+                            uri=replyUrl[3],
+                        )
+                    ]
+                  )
+                }
                 #for column in result
             ]
+    '''
     messages = TemplateSendMessage(
                 alt_text='template',
                 template=CarouselTemplate(columns=columns),
@@ -199,7 +240,7 @@ def handle_message(event):
         event.reply_token,
         #[TextSendMessage(text=replyUrl[0]), TextSendMessage(text=replyUrl[1]), TextSendMessage(text=replyUrl[2]), TextSendMessage(text=replyUrl[3])])
         #messages)
-        TemplateSendMessage(alt_text='template', template=CarouselTemplate(columns=column))
+        TemplateSendMessage(alt_text='template', template=CarouselTemplate(columns=columns))
     )
 
 @handler.add(MessageEvent, message=ImageMessage)
