@@ -27,131 +27,6 @@ YOUR_CHANNEL_SECRET = "7bbd4021f2da55f08e5242df6ee70734"
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-def handle_column(replyUrl,replyImg,replyTitle):
-  column = {
-    "type": "template",
-    "altText": "this is a carousel template",
-    "template": {
-      "type": "carousel",
-      "columns": [
-        {
-          "thumbnailImageUrl": replyImg[0],
-          "imageBackgroundColor": "#FFFFFF",
-          "title": replyTitle[0],
-          "text": replyTitle[0],
-          "defaultAction": {
-            "type": "uri",
-            "label": "View detail",
-            "uri": replyUrl[0]
-          },
-          "actions": [
-            {
-              "type": "postback",
-              "label": "Buy",
-              "data": "action=buy&itemid=111"
-            },
-            {
-              "type": "postback",
-              "label": "Add to cart",
-              "data": "action=add&itemid=111"
-            },
-            {
-              "type": "uri",
-              "label": "View detail",
-              "uri": replyUrl[0]
-            }
-          ]
-        },
-        {
-          "thumbnailImageUrl": replyImg[1],
-          "imageBackgroundColor": "#000000",
-          "title": replyTitle[1],
-          "text": replyTitle[1],
-          "defaultAction": {
-            "type": "uri",
-            "label": "View detail",
-            "uri": replyUrl[1]
-          },
-          "actions": [
-            {
-              "type": "postback",
-              "label": "Buy",
-              "data": "action=buy&itemid=222"
-            },
-            {
-              "type": "postback",
-              "label": "Add to cart",
-              "data": "action=add&itemid=222"
-            },
-            {
-              "type": "uri",
-              "label": "View detail",
-              "uri": replyUrl[1]
-            }
-          ]
-        },
-        {
-          "thumbnailImageUrl": replyImg[2],
-          "imageBackgroundColor": "#FFFFFF",
-          "title": replyTitle[2],
-          "text": replyTitle[2],
-          "defaultAction": {
-            "type": "uri",
-            "label": "View detail",
-            "uri": replyUrl[2]
-          },
-          "actions": [
-            {
-              "type": "postback",
-              "label": "Buy",
-              "data": "action=buy&itemid=111"
-            },
-            {
-              "type": "postback",
-              "label": "Add to cart",
-              "data": "action=add&itemid=111"
-            },
-            {
-              "type": "uri",
-              "label": "View detail",
-              "uri": replyUrl[2]
-            }
-          ]
-        },
-        {
-          "thumbnailImageUrl": replyImg[3],
-          "imageBackgroundColor": "#000000",
-          "title": replyTitle[3],
-          "text": replyTitle[3],
-          "defaultAction": {
-            "type": "uri",
-            "label": "View detail",
-            "uri": replyUrl[3]
-          },
-          "actions": [
-            {
-              "type": "postback",
-              "label": "Buy",
-              "data": "action=buy&itemid=222"
-            },
-            {
-              "type": "postback",
-              "label": "Add to cart",
-              "data": "action=add&itemid=222"
-            },
-            {
-              "type": "uri",
-              "label": "View detail",
-              "uri": replyUrl[3]
-            }
-          ]
-        }
-      ],
-      "imageAspectRatio": "rectangle",
-      "imageSize": "cover"
-    }
-  }
-  return column 
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -176,71 +51,56 @@ def handle_message(event):
     replyUrl, replyImg, replyTitle = recipeClass.get_recipe(event.message.text)
     #column = handle_column(replyUrl,replyImg,replyTitle)
     columns = [
-                #{
-                  CarouselColumn(
-                    thumbnail_image_url=replyImg[0],
-                    title=replyTitle[0],
-                    text=replyTitle[0],
-                    actions=[
-                        URITemplateAction(
-                            label="view detail",
-                            uri=replyUrl[0],
-                        )
-                    ]
-                  )
-                ,#},
-                #{
-                  CarouselColumn(
-                    thumbnail_image_url=replyImg[1],
-                    title=replyTitle[1],
-                    text=replyTitle[1],
-                    actions=[
-                        URITemplateAction(
-                            label="view detail",
-                            uri=replyUrl[1],
-                        )
-                    ]
-                  )
-                ,#},
-                #{
-                  CarouselColumn(
-                    thumbnail_image_url=replyImg[2],
-                    title=replyTitle[2],
-                    text=replyTitle[2],
-                    actions=[
-                        URITemplateAction(
-                            label="view detail",
-                            uri=replyUrl[2],
-                        )
-                    ]
-                  )
-                ,#},
-                #{
-                  CarouselColumn(
-                    thumbnail_image_url=replyImg[3],
-                    title=replyTitle[3],
-                    text=replyTitle[3],
-                    actions=[
-                        URITemplateAction(
-                            label="view detail",
-                            uri=replyUrl[3],
-                        )
-                    ]
-                  )
-                #}
-                #for column in result
+                CarouselColumn(
+                  thumbnail_image_url=replyImg[0],
+                  title=replyTitle[0],
+                  text=replyTitle[0],
+                  actions=[
+                      URITemplateAction(
+                          label="レシピの詳細",
+                          uri=replyUrl[0],
+                      )
+                  ]
+                ),
+                CarouselColumn(
+                  thumbnail_image_url=replyImg[1],
+                  title=replyTitle[1],
+                  text=replyTitle[1],
+                  actions=[
+                      URITemplateAction(
+                          label="レシピの詳細",
+                          uri=replyUrl[1],
+                      )
+                  ]
+                ),
+                CarouselColumn(
+                  thumbnail_image_url=replyImg[2],
+                  title=replyTitle[2],
+                  text=replyTitle[2],
+                  actions=[
+                      URITemplateAction(
+                          label="レシピの詳細",
+                          uri=replyUrl[2],
+                      )
+                  ]
+                ),
+                CarouselColumn(
+                  thumbnail_image_url=replyImg[3],
+                  title=replyTitle[3],
+                  text=replyTitle[3],
+                  actions=[
+                      URITemplateAction(
+                          label="レシピの詳細",
+                          uri=replyUrl[3],
+                      )
+                  ]
+                )
             ]
-    '''
-    messages = TemplateSendMessage(
-                alt_text='template',
-                template=CarouselTemplate(columns=columns),
-            )
-            '''
     line_bot_api.reply_message(
         event.reply_token,
         #[TextSendMessage(text=replyUrl[0]), TextSendMessage(text=replyUrl[1]), TextSendMessage(text=replyUrl[2]), TextSendMessage(text=replyUrl[3])])
         #messages)
-        TemplateSendMessage(alt_text='template', template=CarouselTemplate(columns=columns))
+        TemplateSendMessage(alt_text='カルーセル', template=CarouselTemplate(columns=columns))
     )
 
 @handler.add(MessageEvent, message=ImageMessage)
@@ -261,25 +121,57 @@ def handle_image(event):
     rankName = detectClass.detect_img(image=contentUrl)
     recipeClass = Recipe()
     replyUrl, replyImg, replyTitle = recipeClass.get_recipe(rankName[0])
-
-    #url=[replyUrl[0], replyUrl[1], replyUrl[2], replyUrl[3]]
-    #line_bot_api.reply_message(
-    #event.reply_token,
-    #columns=[
-     #   CarouselColumn(
-      #      thumbnail_image_url=column['thumbnail_image_url'],
-       #     title=column['title'],
-        #    text=column['text'],
-         #   actions=[URITemplateAction(label=column['actions']['label'],uri=column['actions']['uri']),]
-        #)
-    #url=[replyUrl[0], replyUrl[1], replyUrl[2], replyUrl[3]]
-        #for column in url
-    #]
-    #messages=TemplateSendMessage(alt_text='template',template=CarouselTemplate(columns=columns),)
+    columns = [
+                CarouselColumn(
+                  thumbnail_image_url=replyImg[0],
+                  title=replyTitle[0],
+                  text=replyTitle[0],
+                  actions=[
+                      URITemplateAction(
+                          label="レシピの詳細",
+                          uri=replyUrl[0],
+                      )
+                  ]
+                ),
+                CarouselColumn(
+                  thumbnail_image_url=replyImg[1],
+                  title=replyTitle[1],
+                  text=replyTitle[1],
+                  actions=[
+                      URITemplateAction(
+                          label="レシピの詳細",
+                          uri=replyUrl[1],
+                      )
+                  ]
+                ),
+                CarouselColumn(
+                  thumbnail_image_url=replyImg[2],
+                  title=replyTitle[2],
+                  text=replyTitle[2],
+                  actions=[
+                      URITemplateAction(
+                          label="レシピの詳細",
+                          uri=replyUrl[2],
+                      )
+                  ]
+                ),
+                CarouselColumn(
+                  thumbnail_image_url=replyImg[3],
+                  title=replyTitle[3],
+                  text=replyTitle[3],
+                  actions=[
+                      URITemplateAction(
+                          label="レシピの詳細",
+                          uri=replyUrl[3],
+                      )
+                  ]
+                )
+            ]
     line_bot_api.reply_message(
     event.reply_token,
     #messages=messages,
-    [TextSendMessage(text=replyUrl[0]), TextSendMessage(text=replyUrl[1]), TextSendMessage(text=replyUrl[2]), TextSendMessage(text=replyUrl[3])]
+    #[TextSendMessage(text=replyUrl[0]), TextSendMessage(text=replyUrl[1]), TextSendMessage(text=replyUrl[2]), TextSendMessage(text=replyUrl[3])]
+    TemplateSendMessage(alt_text='カルーセル', template=CarouselTemplate(columns=columns))
     )
 
     #except Exception as e:
