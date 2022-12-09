@@ -115,13 +115,12 @@ def handle_image(event):
     with open('static/' + event.message.id + '.jpg', 'wb') as f:
         f.write(message_content.content)
 
-    contentUrl='https://recipe-bot-media.herokuapp.com/' + 'static/' + event.message.id + '.jpg'
+    contentUrl='https://recipe-bot.onrender.com' + 'static/' + event.message.id + '.jpg'
     #try:
     detectClass = Detect()
     rankName = detectClass.detect_img(image=contentUrl)
     recipeClass = Recipe()
     replyUrl, replyImg, replyTitle = recipeClass.get_recipe(rankName[0])
-    '''
     columns = [
                 CarouselColumn(
                   thumbnail_image_url=replyImg[0],
@@ -168,12 +167,11 @@ def handle_image(event):
                   ]
                 )
             ]
-            '''
     line_bot_api.reply_message(
     event.reply_token,
     #messages=messages,
-    [TextSendMessage(text=replyUrl[0]), TextSendMessage(text=replyUrl[1]), TextSendMessage(text=replyUrl[2]), TextSendMessage(text=replyUrl[3])]
-    #TemplateSendMessage(alt_text='カルーセル', template=CarouselTemplate(columns=columns))
+    #[TextSendMessage(text=replyUrl[0]), TextSendMessage(text=replyUrl[1]), TextSendMessage(text=replyUrl[2]), TextSendMessage(text=replyUrl[3])]
+    TemplateSendMessage(alt_text='カルーセル', template=CarouselTemplate(columns=columns))
     )
 
     #except Exception as e:
