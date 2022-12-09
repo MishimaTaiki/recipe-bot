@@ -171,7 +171,7 @@ def handle_image(event):
     event.reply_token,
     #messages=messages,
     #[TextSendMessage(text=replyUrl[0]), TextSendMessage(text=replyUrl[1]), TextSendMessage(text=replyUrl[2]), TextSendMessage(text=replyUrl[3])]
-    TemplateSendMessage(alt_text='カルーセル', template=CarouselTemplate(columns=columns))
+    [TextSendMessage(text=rankName[0]), TemplateSendMessage(alt_text='カルーセル', template=CarouselTemplate(columns=columns))]
     )
 
     #except Exception as e:
